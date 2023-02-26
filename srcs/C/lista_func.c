@@ -30,20 +30,41 @@ void	adicionar_contato(Contato **head, char *nome, char *telefone,
 	Contato	*atual;
 
 	if (verficar_repetido(*head, nome))
+	{
+		puts("Contacto com o nome repetido!");
+		puts("Não foi possível adicionar");
 		return ;
+	}
+	else if(verificar_vazio(nome) || verificar_vazio(email))
+	{
+		puts("Nome ou email vazio");
+		puts("Não foi possível adicionar");
+		return ;
+	}
+	else if(verificar_telemovel(telefone))
+	{
+		puts("Telemovel inválido!");
+		puts("Não foi possível adicionar");
+		return ;
+	}
+
 	novo_contato = criar_node_contato(nome, telefone, email);
 	if (*head == NULL)
+	{ 
 		*head = novo_contato;
+		puts("Contacto adicionado com sucesso!");
+	}
 	else
 	{
 		atual = *head;
 		while (atual->next != NULL)
 			atual = atual->next;
 		atual->next = novo_contato;
+		puts("Contacto adicionado com sucesso!");
 	}
 }
 
-void	remover_contato(Contato **head, char *nome)
+int	remover_contato(Contato **head, char *nome)
 {
 	Contato	*atual;
 	Contato	*anterior;
@@ -58,8 +79,10 @@ void	remover_contato(Contato **head, char *nome)
 	// Caso o nome não seja encontrado
 	if (atual == NULL)
 	{
-		printf("Contato não encontrado: %s\n", nome);
-		exit (1);
+		printf("Contacto (%s) não encontrado\n", nome);
+		getchar();
+		return 1;
+		
 	}
 	/*Atualiza a lista para ficar a apontar corretamente após a eliminação do contacto.
       A primeira condição verifica se é o 1º elemento da lista,
@@ -76,6 +99,7 @@ void	remover_contato(Contato **head, char *nome)
 	free(atual->email);
 	free(atual->telefone);
 	free(atual);
+	return 0;
 }
 
 int	verficar_repetido(Contato *head, char *nome)
@@ -120,4 +144,25 @@ int	check_maior_email(Contato *head)
 	}
 
 	return (maior);
+}
+
+int verificar_telemovel(char *telemovel)
+{
+	int i = 0;
+	if(strlen(telemovel) == 9)
+	{
+		while(telemovel[i] >= '0' && telemovel[i] <= '9')
+			i++;
+		if(i == 9)
+			return 0;
+	}
+	return 1;
+}
+
+int verificar_vazio(char *name)
+{
+	int i = 0;
+	if(name[i] == '\0')
+		return 1;
+	return 0;
 }

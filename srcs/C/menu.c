@@ -11,9 +11,10 @@ int	Menu(void)
 	printf("║- [3] Exportar contactos        ║\n");
 	printf("║- [4] Importar contactos        ║\n");
 	printf("║- [5] Ver contactos             ║\n");
+	printf("║- [6] Sair                      ║\n");
 	printf("╚════════════════════════════════╝\n");
 	printf(" Selecione a opção que deseja --> ");
-	while (scanf("%d", &op) != 1 || !(op >= 1 && op <= 5))
+	while (scanf("%d", &op) != 1 || !(op >= 1 && op <= 6))
 	{
 		printf("Opção inválida, por favor digite uma opção válida -> ");
 		//Seguintes scanf servem para limpar o buffer e descartar entradas inválidas

@@ -1,20 +1,73 @@
 #include "libmain.h"
 
-int main()
+int	main(void)
 {
-    Contato *list = NULL;
+	Contato *list = NULL;
+	size_t buffsize = 0;
+	int op_menu;
+	char *nome = NULL;
+	char *email = NULL;
+	char *telefone = NULL;
 
-    adicionar_contato(&list,"Isabel Verissimo","932852275", "isabverisimo@gmail.com");
-    adicionar_contato(&list,"Seixo Paulo","932145685", "amilcar@gmail.com");
-    adicionar_contato(&list,"Henrique Verissimo","932022785", "henrilindeza27@gmail.com");
-    adicionar_contato(&list,"Henrique rtrtr","932022785", "henrilinbgfnfhfhhfnhndeza27@gmail.com");
+	do
+	{
+		cleanScrean();
+		switch (op_menu = Menu())
+		{
+		case 1:
 
-    mostrar_contato(&list);
-    remover_contato(&list,"Henrique rtrtr");
-    puts("++++++++++++++++++++++++++++++++++++");
-    mostrar_contato(&list);
-    return 0;
+			cleanBuffer();
 
+			puts("");
+			printf("Nome de contacto: ");
+			getline(&nome, &buffsize, stdin);
+			nome[strcspn(nome, "\n")] = '\0';
+			buffsize = 0;
 
+			printf("Email de contacto: ");
+			getline(&email, &buffsize, stdin);
+			email[strcspn(email, "\n")] = '\0';
+			buffsize = 0;
 
+			printf("Telefone de contacto: ");
+			getline(&telefone, &buffsize, stdin);
+			telefone[strcspn(telefone, "\n")] = '\0';
+
+			buffsize = 0;
+	
+			adicionar_contato(&list, nome, telefone, email);
+			cleanBuffer();
+			free(nome);
+			free(email);
+			free(telefone);
+			break ;
+
+		case 2:
+			cleanBuffer();
+			buffsize = 0;
+			printf("Nome de contacto a remover: ");
+			getline(&nome, &buffsize, stdin);
+			nome[strcspn(nome, "\n")] = '\0';
+			remover_contato(&list, nome);
+			free(nome);
+			break ;
+
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			cleanBuffer();
+			cleanScrean();
+			puts("CONTACTOS");
+			mostrar_contato(&list);
+			getchar();
+			break ;
+		default:
+			break ;
+		}
+		cleanScrean();
+	} while (op_menu != 6);
+
+	return (0);
 }
