@@ -12,12 +12,16 @@ struct contato
 
 };
 
+void		cleanScrean(void);
+void		cleanBuffer(void);
+
 Contato		*criar_node_contato(char *nome, char *telefone, char *email);
 void		adicionar_contato(Contato **head, char *nome, char *telefone, char *email);
-void		remover_contato(Contato **head, char *nome);
+int			remover_contato(Contato **head, char *nome);
 int			verficar_repetido(Contato *head, char *nome);
 int			check_maior_email(Contato *head);
-
-void	mostrar_contato(Contato **head);
+int 		verificar_telemovel(char *telemovel);
+int 		verificar_vazio(char *name);
+void		mostrar_contato(Contato **head);
 
 #endif
