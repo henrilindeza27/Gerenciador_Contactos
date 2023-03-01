@@ -24,9 +24,9 @@ int	Menu(void)
 	return (op);
 }
 
-void	print_lista_contatos(char *nome, char *telefone, char *email, int size_mail)
+void	print_lista_contatos(char *nome, char *telefone, char *email, int size)
 {
-	int sizemax = size_mail + 16;
+	int sizemax = size + 16;
 	int sizemaxcpy = sizemax;
 
 	//Printar a 1º linha

@@ -17,7 +17,7 @@ int	main(void)
 		case 1:
 
 			cleanBuffer();
-
+			
 			puts("");
 			printf("Nome de contacto: ");
 			getline(&nome, &buffsize, stdin);
@@ -34,7 +34,7 @@ int	main(void)
 			telefone[strcspn(telefone, "\n")] = '\0';
 
 			buffsize = 0;
-	
+			printf("\n");
 			adicionar_contato(&list, nome, telefone, email);
 			cleanBuffer();
 			break ;

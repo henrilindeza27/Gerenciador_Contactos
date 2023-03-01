@@ -14,16 +14,30 @@ void	cleanBuffer(void)
 int	check_maior_email(Contato *head)
 {
 	Contato	*atual;
-	size_t	maior;
+	int		maior;
 
 	atual = head;
 	maior = strlen(atual->email);
 	while (atual != 0)
 	{
-		if ((strlen(atual->email)) > maior)
-		{
-			maior = strlen(atual->email);
-		}
+		if (((int)strlen(atual->email)) > maior)
+			maior = (int)strlen(atual->email);
+		atual = atual->next;
+	}
+	return (maior);
+}
+
+int	check_maior_nome(Contato *head)
+{
+	Contato	*atual;
+	int		maior;
+
+	atual = head;
+	maior = strlen(atual->nome);
+	while (atual != 0)
+	{
+		if (((int)strlen(atual->nome)) > maior)
+			maior = (int)strlen(atual->nome);
 		atual = atual->next;
 	}
 	return (maior);

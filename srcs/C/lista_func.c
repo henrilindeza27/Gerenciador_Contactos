@@ -24,7 +24,8 @@ Contato	*criar_node_contato(char *nome, char *telefone, char *email)
 	return (novo_contato);
 }
 
-void	adicionar_contato(Contato **head, char *nome, char *telefone, char *email)
+void	adicionar_contato(Contato **head, char *nome, char *telefone,
+		char *email)
 {
 	Contato	*novo_contato;
 	Contato	*atual;
@@ -45,7 +46,6 @@ void	adicionar_contato(Contato **head, char *nome, char *telefone, char *email)
 	{
 		puts("Email precisa de ser *(@gmail.com)");
 		return ;
-
 	}
 	else if (verificar_telemovel(telefone))
 	{
@@ -121,9 +121,16 @@ void	mostrar_contato(Contato **head)
 {
 	Contato	*atual;
 	int		size;
+	int		mE;
+	int		mN;
 
 	atual = *head;
-	size = check_maior_email(atual);
+	mE = check_maior_email(atual);
+	mN = check_maior_nome(atual);
+	if (mE >= mN)
+		size = mE;
+	else
+		size = mN;
 	while (atual != 0)
 	{
 		print_lista_contatos(atual->nome, atual->telefone, atual->email, size);

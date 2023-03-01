@@ -20,6 +20,7 @@ void		adicionar_contato(Contato **head, char *nome, char *telefone, char *email)
 int			remover_contato(Contato **head, char *nome);
 int			verficar_repetido(Contato *head, char *nome);
 int			check_maior_email(Contato *head);
+int			check_maior_nome(Contato *head);
 int 		verificar_telemovel(char *telemovel);
 int 		verificar_vazio(char *name);
 void		mostrar_contato(Contato **head);
