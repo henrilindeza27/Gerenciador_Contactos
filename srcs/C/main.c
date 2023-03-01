@@ -46,7 +46,6 @@ int	main(void)
 			getline(&nome, &buffsize, stdin);
 			nome[strcspn(nome, "\n")] = '\0';
 			remover_contato(&list, nome);
-			free(nome);
 			break ;
 
 		case 3:
