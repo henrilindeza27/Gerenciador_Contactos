@@ -4,6 +4,7 @@ Contato	*criar_node_contato(char *nome, char *telefone, char *email)
 {
 	Contato	*novo_contato;
 
+	novo_contato = NULL;
 	novo_contato = (Contato *)malloc(sizeof(Contato));
 	if (novo_contato == NULL)
 		exit(1);
@@ -23,8 +24,7 @@ Contato	*criar_node_contato(char *nome, char *telefone, char *email)
 	return (novo_contato);
 }
 
-void	adicionar_contato(Contato **head, char *nome, char *telefone,
-		char *email)
+void	adicionar_contato(Contato **head, char *nome, char *telefone, char *email)
 {
 	Contato	*novo_contato;
 	Contato	*atual;
@@ -35,22 +35,27 @@ void	adicionar_contato(Contato **head, char *nome, char *telefone,
 		puts("Não foi possível adicionar");
 		return ;
 	}
-	else if(verificar_vazio(nome) || verificar_vazio(email))
+	else if (verificar_vazio(nome) || verificar_vazio(email))
 	{
 		puts("Nome ou email vazio");
 		puts("Não foi possível adicionar");
 		return ;
 	}
-	else if(verificar_telemovel(telefone))
+	else if (verif_mail(email))
+	{
+		puts("Email precisa de ser *(@gmail.com)");
+		return ;
+
+	}
+	else if (verificar_telemovel(telefone))
 	{
 		puts("Telemovel inválido!");
 		puts("Não foi possível adicionar");
 		return ;
 	}
-
 	novo_contato = criar_node_contato(nome, telefone, email);
 	if (*head == NULL)
-	{ 
+	{
 		*head = novo_contato;
 		puts("Contacto adicionado com sucesso!");
 	}
@@ -81,25 +86,22 @@ int	remover_contato(Contato **head, char *nome)
 	{
 		printf("Contacto (%s) não encontrado\n", nome);
 		getchar();
-		return 1;
-		
+		return (1);
 	}
 	/*Atualiza a lista para ficar a apontar corretamente após a eliminação do contacto.
       A primeira condição verifica se é o 1º elemento da lista,
 	a 2º condição e caso seja
       um elemento que não o 1º
     */
-	
 	if (anterior == NULL)
 		*head = atual->next;
 	else
 		anterior->next = atual->next;
-
 	free(atual->nome);
 	free(atual->email);
 	free(atual->telefone);
 	free(atual);
-	return 0;
+	return (0);
 }
 
 int	verficar_repetido(Contato *head, char *nome)
@@ -127,42 +129,4 @@ void	mostrar_contato(Contato **head)
 		print_lista_contatos(atual->nome, atual->telefone, atual->email, size);
 		atual = atual->next;
 	}
-}
-
-int	check_maior_email(Contato *head)
-{
-	Contato *atual = head;
-	size_t maior = strlen(atual->email);
-
-	while (atual != 0)
-	{
-		if ((strlen(atual->email)) > maior)
-		{
-			maior = strlen(atual->email);
-		}
-		atual = atual->next;
-	}
-
-	return (maior);
-}
-
-int verificar_telemovel(char *telemovel)
-{
-	int i = 0;
-	if(strlen(telemovel) == 9)
-	{
-		while(telemovel[i] >= '0' && telemovel[i] <= '9')
-			i++;
-		if(i == 9)
-			return 0;
-	}
-	return 1;
-}
-
-int verificar_vazio(char *name)
-{
-	int i = 0;
-	if(name[i] == '\0')
-		return 1;
-	return 0;
 }

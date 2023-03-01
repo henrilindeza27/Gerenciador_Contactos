@@ -37,9 +37,6 @@ int	main(void)
 	
 			adicionar_contato(&list, nome, telefone, email);
 			cleanBuffer();
-			free(nome);
-			free(email);
-			free(telefone);
 			break ;
 
 		case 2:
@@ -60,7 +57,10 @@ int	main(void)
 			cleanBuffer();
 			cleanScrean();
 			puts("CONTACTOS");
-			mostrar_contato(&list);
+			if(list == NULL)
+				puts("Sem contactos");
+			else
+				mostrar_contato(&list);
 			getchar();
 			break ;
 		default:
