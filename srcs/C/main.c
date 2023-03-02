@@ -45,10 +45,14 @@ int	main(void)
 			printf("Nome de contacto a remover: ");
 			getline(&nome, &buffsize, stdin);
 			nome[strcspn(nome, "\n")] = '\0';
+			printf("\n");
 			remover_contato(&list, nome);
 			break ;
 
 		case 3:
+			printf("\n");
+			export_contatos(list,"contactos.txt");
+			getchar();
 			break;
 		case 4:
 			break;

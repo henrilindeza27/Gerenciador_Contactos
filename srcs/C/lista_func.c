@@ -101,6 +101,8 @@ int	remover_contato(Contato **head, char *nome)
 	free(atual->email);
 	free(atual->telefone);
 	free(atual);
+	puts("Contacto removido com sucesso!");
+	getchar();
 	return (0);
 }
 
