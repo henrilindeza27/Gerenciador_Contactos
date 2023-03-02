@@ -16,7 +16,8 @@ void export_contatos(Contato *head, char *name_file)
 
     while (atual)
     {
-        fprintf(file, "%s,%s,%s\n", atual->nome, atual->telefone, atual->email);
+        fprintf(file, "\nNome: %s\nTelemovel: %s\nEmail: %s\n", atual->nome, atual->telefone, atual->email);
+        fprintf(file, "══════════════════════════════════════");
         atual = atual->next;
     }
     puts("Contactos exportados com sucesso!");

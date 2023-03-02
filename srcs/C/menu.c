@@ -28,7 +28,7 @@ void	print_lista_contatos(char *nome, char *telefone, char *email, int size)
 {
 	int sizemax = size + 16;
 	int sizemaxcpy = sizemax;
-
+	
 	//Printar a 1º linha
 	printf("╔");
 	while(sizemaxcpy--)
@@ -64,4 +64,36 @@ void	print_lista_contatos(char *nome, char *telefone, char *email, int size)
 		printf("═");
 	printf("╝\n");
 
+}
+
+void print_nome_contactos(Contato *head)
+{
+	Contato *atual;
+	atual = head;
+	int i = 0;
+	int sizemax = check_maior_nome(atual) + 16;
+	int sizemaxcpy = sizemax;
+
+	//Printar a 1º linha
+	printf("╔");
+	while(sizemaxcpy--)
+		printf("═");
+	printf("╗\n");
+	
+	while (atual != 0)
+	{	
+		sizemaxcpy = sizemax - (strlen(atual->nome)+7);
+		printf("║ [%d] - %s", ++i, atual->nome);
+		while(sizemaxcpy--)
+			printf(" ");
+		puts("║");
+		atual = atual->next;
+	}
+	
+	//Printar última linha
+	sizemaxcpy = sizemax;
+	printf("╚");
+	while(sizemaxcpy--)
+		printf("═");
+	printf("╝\n");
 }

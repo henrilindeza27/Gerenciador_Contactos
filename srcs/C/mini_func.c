@@ -87,3 +87,4 @@ int	verif_mail(char *email)
 		return (0);
 	return (1);
 }
+

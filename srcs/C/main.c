@@ -15,10 +15,12 @@ int	main(void)
 		switch (op_menu = Menu())
 		{
 		case 1:
-
 			cleanBuffer();
+			cleanScrean();
+			puts("╔══════════════════════╗");
+			puts("║  ADICIONAR CONTACTO  ║");
+			puts("╚══════════════════════╝");
 			
-			puts("");
 			printf("Nome de contacto: ");
 			getline(&nome, &buffsize, stdin);
 			nome[strcspn(nome, "\n")] = '\0';
@@ -42,7 +44,10 @@ int	main(void)
 		case 2:
 			cleanBuffer();
 			buffsize = 0;
-			printf("Nome de contacto a remover: ");
+			cleanScrean();
+			puts("Contactos guardados:");
+			print_nome_contactos(list);
+			printf("\nNome de contacto a remover: ");
 			getline(&nome, &buffsize, stdin);
 			nome[strcspn(nome, "\n")] = '\0';
 			printf("\n");

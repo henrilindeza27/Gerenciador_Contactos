@@ -26,5 +26,4 @@ int 		verificar_vazio(char *name);
 void		mostrar_contato(Contato **head);
 int			verif_mail(char *email);
 
-
 #endif
