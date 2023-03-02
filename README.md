@@ -6,7 +6,7 @@
 - [x] Visualizar contactos atuais
 - [x] Menu
 - [x] Integração do Menu
-- [ ] Exportar contactos para um ficheiro
+- [x] Exportar contactos para um ficheiro
 - [ ] Importar contactos para de um ficheiro
 
 ## Para executar basta fazer o comando **"make"** na pasta original
