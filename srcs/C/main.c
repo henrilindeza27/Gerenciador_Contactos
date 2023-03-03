@@ -46,12 +46,18 @@ int	main(void)
 			buffsize = 0;
 			cleanScrean();
 			puts("Contactos guardados:");
-			print_nome_contactos(list);
-			printf("\nNome de contacto a remover: ");
-			getline(&nome, &buffsize, stdin);
-			nome[strcspn(nome, "\n")] = '\0';
-			printf("\n");
-			remover_contato(&list, nome);
+			if(!list)
+			{	puts("Nenhum contacto a remover");
+				getchar();
+			}
+			else
+			{	print_nome_contactos(list);
+				printf("\nNome de contacto a remover: ");
+				getline(&nome, &buffsize, stdin);
+				nome[strcspn(nome, "\n")] = '\0';
+				printf("\n");
+				remover_contato(&list, nome);
+			}
 			break ;
 
 		case 3:
@@ -60,6 +66,9 @@ int	main(void)
 			getchar();
 			break;
 		case 4:
+			printf("\n");
+			import_contactos(&list, "contactos.txt");
+			getchar();
 			break;
 		case 5:
 			cleanBuffer();

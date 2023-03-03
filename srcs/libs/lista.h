@@ -25,5 +25,7 @@ int 		verificar_telemovel(char *telemovel);
 int 		verificar_vazio(char *name);
 void		mostrar_contato(Contato **head);
 int			verif_mail(char *email);
+void 		remover_todos_contactos(Contato **head);
+
 
 #endif

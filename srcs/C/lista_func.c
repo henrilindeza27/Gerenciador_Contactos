@@ -24,8 +24,7 @@ Contato	*criar_node_contato(char *nome, char *telefone, char *email)
 	return (novo_contato);
 }
 
-void	adicionar_contato(Contato **head, char *nome, char *telefone,
-		char *email)
+void	adicionar_contato(Contato **head, char *nome, char *telefone, char *email)
 {
 	Contato	*novo_contato;
 	Contato	*atual;
@@ -138,4 +137,26 @@ void	mostrar_contato(Contato **head)
 		print_lista_contatos(atual->nome, atual->telefone, atual->email, size);
 		atual = atual->next;
 	}
+}
+
+void remover_todos_contactos(Contato **head)
+{
+	Contato	*atual;
+	atual = *head;
+	if(!atual)
+		puts("Nenhum contacto para remover");
+	else
+	{	while (atual)
+		{
+			Contato *proximo = atual->next;
+			free(atual->nome);
+			free(atual->telefone);
+			free(atual->email);
+			free(atual);
+			atual = proximo;
+		}
+		*head = NULL;
+		puts("Contactos removidos com sucesso");
+	}
+	getchar();
 }
